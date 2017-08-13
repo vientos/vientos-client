@@ -37,56 +37,54 @@ export default function clientFactory (config, fetch, FormData) {
     return `${service}/${path}/${cuid()}`
   }
 
-  function get (url) {
-    return fetch(url, { credentials: 'include' })
-        .then(response => response.json())
+  async function get (url) {
+    let response = await fetch(url, {
+      credentials: 'include'
+    })
+    let json = await response.json()
+    if (response.ok) return json
+    else throw json
   }
 
-  function put (resource) {
+  async function put (resource) {
     if (!resource._id) resource._id = mintUrl(resource)
-    return fetch(resource._id, {
+    let response = await fetch(resource._id, {
       method: 'PUT',
       credentials: 'include',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(resource)
-    }).then(response => response.json())
+    })
+    let json = await response.json()
+    if (response.ok) return json
+    else throw json
   }
 
-  function del (resource) {
-    let delResponse
-    return fetch(resource._id, {
+  async function del (resource) {
+    let response = await fetch(resource._id, {
       method: 'DELETE',
       credentials: 'include'
-    }).then(response => {
-      delResponse = response
-      if (delResponse.ok) {
-        return null
-      } else {
-        return response.json()
-      }
-    }).then(nullOrJson => {
-      if (delResponse.ok) {
-        return null
-      } else {
-        return Promise.reject(nullOrJson)
-      }
     })
+    if (!response.ok) {
+      let json = await response.json()
+      throw json
+    }
   }
 
-  function uploadImageAndSave (entity, image) {
-    if (!image) return put(entity)
+  async function uploadImageAndSave (entity, image) {
+    if (!image) return await put(entity)
     let data = new FormData()
     data.append('file', image)
     data.append('upload_preset', cloudinary.preset)
-    return fetch(cloudinary.url, {
+    let response = await fetch(cloudinary.url, {
       method: 'POST',
       body: data
-    }).then(response => response.json())
-    .then(cloudinaryData => {
-      return Object.assign({}, entity, {
-        logo: cloudinaryData.secure_url
-      })
-    }).then(updated => put(updated))
+    })
+    if (!response.ok) { throw new Error() }
+    let cloudinaryData = await response.json()
+    let updated = Object.assign({}, entity, {
+      logo: cloudinaryData.secure_url
+    })
+    return await put(updated)
   }
 
   return {
