@@ -8,6 +8,7 @@ export default function clientFactory (config, fetch, FormData) {
     preset: config.cloudinary.preset
   }
 
+  // TODO: change to hydra:collection pattern
   const collections = {
     people: { type: 'Person' },
     projects: { type: 'Project' },
@@ -71,7 +72,7 @@ export default function clientFactory (config, fetch, FormData) {
   }
 
   async function uploadImageAndSave (entity, image) {
-    if (!image) return await put(entity)
+    if (!image) return put(entity)
     let data = new FormData()
     data.append('file', image)
     data.append('upload_preset', cloudinary.preset)
@@ -84,7 +85,7 @@ export default function clientFactory (config, fetch, FormData) {
     let updated = Object.assign({}, entity, {
       logo: cloudinaryData.secure_url
     })
-    return await put(updated)
+    return put(updated)
   }
 
   return {
@@ -103,6 +104,7 @@ export default function clientFactory (config, fetch, FormData) {
           return get(collectionUrl(action.type))
         case ActionTypes.FETCH_PERSON_REQUESTED:
           return get(action.id)
+        // TODO: change to hydra:collection pattern
         case ActionTypes.FETCH_MY_CONVERSATIONS_REQUESTED:
           return get(action.person._id + '/conversations')
         case ActionTypes.FETCH_NOTIFICATIONS_REQUESTED:

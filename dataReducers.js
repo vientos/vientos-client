@@ -75,6 +75,8 @@ export function reviews (state = [], action) {
   switch (action.type) {
     case ActionTypes.FETCH_REVIEWS_SUCCEEDED:
       return action.json
+    case ActionTypes.ADD_REVIEW_SUCCEEDED:
+      return replaceOrAddElement(state, action.json)
     default:
       return state
   }
@@ -101,11 +103,6 @@ export function myConversations (state = [], action) {
       conversation = state.find(conversation => conversation._id === action.json.conversation)
       updated = Object.assign({}, conversation, {
         messages: replaceOrAddElement(conversation.messages, action.json)})
-      return replaceOrAddElement(state, updated)
-    case ActionTypes.ADD_REVIEW_SUCCEEDED:
-      conversation = state.find(conversation => conversation._id === action.json.conversation)
-      updated = Object.assign({}, conversation, {
-        reviews: replaceOrAddElement(conversation.reviews, action.json)})
       return replaceOrAddElement(state, updated)
     default:
       return state
