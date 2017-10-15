@@ -38,6 +38,11 @@ export default function clientFactory (config, fetch, FormData) {
     return `${service}/${path}/${cuid()}`
   }
 
+  function channelUrl (personId) {
+    if (personId) return `${service}/people/${personId.split('/').pop()}/updates`
+    else return `${service}/updates`
+  }
+
   async function get (url) {
     let response = await fetch(url, {
       credentials: 'include'
@@ -90,6 +95,7 @@ export default function clientFactory (config, fetch, FormData) {
 
   return {
     mintUrl,
+    channelUrl,
     handleAction (action) {
       switch (action.type) {
         case ActionTypes.HELLO_REQUESTED:
