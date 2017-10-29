@@ -24,10 +24,6 @@ export function fetchReviews () {
   return { type: ActionTypes.FETCH_REVIEWS_REQUESTED }
 }
 
-export function fetchLabels () {
-  return { type: ActionTypes.FETCH_LABELS_REQUESTED }
-}
-
 export function fetchCategories () {
   return { type: ActionTypes.FETCH_CATEGORIES_REQUESTED }
 }

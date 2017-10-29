@@ -23,7 +23,6 @@ export default function clientFactory (config, fetch, FormData) {
     collaborations: { type: 'Collaboration' },
     subscriptions: { type: 'Subscription' },
     notifications: { type: 'Notification' },
-    labels: { type: 'Label' },
     categories: { type: 'Category' }
   }
 
@@ -101,7 +100,6 @@ export default function clientFactory (config, fetch, FormData) {
         case ActionTypes.HELLO_REQUESTED:
           return get(service)
         case ActionTypes.FETCH_CATEGORIES_REQUESTED:
-        case ActionTypes.FETCH_LABELS_REQUESTED:
         case ActionTypes.FETCH_PROJECTS_REQUESTED:
         case ActionTypes.FETCH_PLACES_REQUESTED:
         case ActionTypes.FETCH_PEOPLE_REQUESTED:

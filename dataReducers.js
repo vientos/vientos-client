@@ -169,12 +169,3 @@ export function loginProviders (state = {}, action) {
       return state
   }
 }
-
-export function labels (state = {}, action) {
-  switch (action.type) {
-    case ActionTypes.FETCH_LABELS_SUCCEEDED:
-      return action.json
-    default:
-      return state
-  }
-}
