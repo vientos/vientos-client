@@ -82,6 +82,17 @@ export function reviews (state = [], action) {
   }
 }
 
+export function matchings (state = [], action) {
+  switch (action.type) {
+    case ActionTypes.FETCH_MATCHINGS_SUCCEEDED:
+      return action.json
+    case ActionTypes.MATCH_SUCCEEDED:
+      return replaceOrAddElement(state, action.json)
+    default:
+      return state
+  }
+}
+
 export function people (state = [], action) {
   switch (action.type) {
     case ActionTypes.FETCH_PEOPLE_SUCCEEDED:

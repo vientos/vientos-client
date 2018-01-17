@@ -24,6 +24,10 @@ export function fetchReviews () {
   return { type: ActionTypes.FETCH_REVIEWS_REQUESTED }
 }
 
+export function fetchMatchings () {
+  return { type: ActionTypes.FETCH_MATCHINGS_REQUESTED }
+}
+
 export function fetchCategories () {
   return { type: ActionTypes.FETCH_CATEGORIES_REQUESTED }
 }
@@ -93,6 +97,13 @@ export function unfavor (favoring) {
   return {
     type: ActionTypes.UNFAVOR_REQUESTED,
     favoring
+  }
+}
+
+export function match (matching) {
+  return {
+    type: ActionTypes.MATCH_REQUESTED,
+    matching
   }
 }
 

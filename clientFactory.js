@@ -17,6 +17,7 @@ export default function clientFactory (config, fetch, FormData) {
     sessions: { type: 'Session' },
     followings: { type: 'Following' },
     favorings: { type: 'Favoring' },
+    matchings: { type: 'Matching' },
     conversations: { type: 'Conversation' },
     messages: { type: 'Message' },
     reviews: { type: 'Review' },
@@ -105,6 +106,7 @@ export default function clientFactory (config, fetch, FormData) {
         case ActionTypes.FETCH_PEOPLE_REQUESTED:
         case ActionTypes.FETCH_INTENTS_REQUESTED:
         case ActionTypes.FETCH_REVIEWS_REQUESTED:
+        case ActionTypes.FETCH_MATCHINGS_REQUESTED:
           return get(collectionUrl(action.type))
         case ActionTypes.FETCH_PERSON_REQUESTED:
           return get(action.id)
@@ -123,6 +125,8 @@ export default function clientFactory (config, fetch, FormData) {
           return put(action.following)
         case ActionTypes.FAVOR_REQUESTED:
           return put(action.favoring)
+        case ActionTypes.MATCH_REQUESTED:
+          return put(action.matching)
         case ActionTypes.SAVE_SUBSCRIPTION_REQUESTED:
           return put(action.subscription)
         case ActionTypes.START_CONVERSATION_REQUESTED:
