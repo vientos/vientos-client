@@ -108,7 +108,7 @@ export function myConversations (state = [], action) {
   switch (action.type) {
     case ActionTypes.FETCH_MY_CONVERSATIONS_SUCCEEDED:
       return action.json
-    case ActionTypes.START_CONVERSATION_SUCCEEDED:
+    case ActionTypes.SAVE_CONVERSATION_SUCCEEDED:
       return replaceOrAddElement(state, action.json)
     case ActionTypes.ADD_MESSAGE_SUCCEEDED:
       conversation = state.find(conversation => conversation._id === action.json.conversation)

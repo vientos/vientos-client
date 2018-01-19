@@ -129,7 +129,7 @@ export default function clientFactory (config, fetch, FormData) {
           return put(action.matching)
         case ActionTypes.SAVE_SUBSCRIPTION_REQUESTED:
           return put(action.subscription)
-        case ActionTypes.START_CONVERSATION_REQUESTED:
+        case ActionTypes.SAVE_CONVERSATION_REQUESTED:
           return put(action.conversation)
         case ActionTypes.ADD_MESSAGE_REQUESTED:
           return put(action.message)

@@ -107,9 +107,9 @@ export function match (matching) {
   }
 }
 
-export function startConversation (conversation) {
+export function saveConversation (conversation) {
   return {
-    type: ActionTypes.START_CONVERSATION_REQUESTED,
+    type: ActionTypes.SAVE_CONVERSATION_REQUESTED,
     conversation
   }
 }
