@@ -140,7 +140,7 @@ export function person (state = null, action) {
       return action.json
     case ActionTypes.SAVE_PERSON_SUCCEEDED:
       return action.json
-    case ActionTypes.BYE_SUCCEEDED:
+    case ActionTypes.BYE_REQUESTED:
       return null
     case ActionTypes.FOLLOW_SUCCEEDED:
       return Object.assign({}, state, {
@@ -165,7 +165,7 @@ export function session (state = null, action) {
   switch (action.type) {
     case ActionTypes.HELLO_SUCCEEDED:
       return action.json.session || state
-    case ActionTypes.BYE_SUCCEEDED:
+    case ActionTypes.BYE_REQUESTED:
       return null
     default:
       return state
