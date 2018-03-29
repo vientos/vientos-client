@@ -108,6 +108,11 @@ export default function clientFactory (config, fetch, FormData) {
         case ActionTypes.FETCH_REVIEWS_REQUESTED:
         case ActionTypes.FETCH_MATCHINGS_REQUESTED:
           return get(collectionUrl(action.type))
+        case ActionTypes.FETCH_STATES_REQUESTED:
+          return get(service + '/places/states')
+        case ActionTypes.FETCH_MUNICIPALITIES_REQUESTED:
+          let stateCuid = action.stateId.split('/').pop()
+          return get(`${service}/places/states/${stateCuid}/municipalities`)
         case ActionTypes.FETCH_PERSON_REQUESTED:
           return get(action.id)
         // TODO: change to hydra:collection pattern

@@ -71,6 +71,26 @@ export function places (state = [], action) {
   }
 }
 
+export function states (state = [], action) {
+  switch (action.type) {
+    case ActionTypes.FETCH_STATES_SUCCEEDED:
+      return action.json
+    default:
+      return state
+  }
+}
+
+export function municipalities (state = {}, action) {
+  switch (action.type) {
+    case ActionTypes.FETCH_MUNICIPALITIES_SUCCEEDED:
+      let newState = Object.assign({}, state)
+      newState[action.json[0].state] = action.json
+      return newState
+    default:
+      return state
+  }
+}
+
 export function reviews (state = [], action) {
   switch (action.type) {
     case ActionTypes.FETCH_REVIEWS_SUCCEEDED:

@@ -20,6 +20,17 @@ export function fetchPlaces () {
   return { type: ActionTypes.FETCH_PLACES_REQUESTED }
 }
 
+export function fetchStates () {
+  return { type: ActionTypes.FETCH_STATES_REQUESTED }
+}
+
+export function fetchMunicipalities (stateId) {
+  return {
+    type: ActionTypes.FETCH_MUNICIPALITIES_REQUESTED,
+    stateId
+  }
+}
+
 export function fetchReviews () {
   return { type: ActionTypes.FETCH_REVIEWS_REQUESTED }
 }
